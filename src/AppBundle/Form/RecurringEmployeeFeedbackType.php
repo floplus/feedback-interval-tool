@@ -17,6 +17,7 @@ class RecurringEmployeeFeedbackType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('employee')
             ->add('targetDate', DateType::class)
             ->add('appointedDate', DateTimeType::class)
             ->add('protocolFile')
@@ -25,7 +26,6 @@ class RecurringEmployeeFeedbackType extends AbstractType
             ->add('noteSuperior')
             ->add('noteEmployee')
             ->add('typeOfMeeting')
-            ->add('employee')
         ;
     }
 
