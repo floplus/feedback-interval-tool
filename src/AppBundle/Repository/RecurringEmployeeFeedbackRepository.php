@@ -10,4 +10,24 @@ namespace AppBundle\Repository;
  */
 class RecurringEmployeeFeedbackRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Returns unappointed feedbacks in a threshold
+     *
+     * @param int $threshold
+     *
+     * @return array
+     */
+    public function findUnappointed(int $threshold)
+    {
+        $thresholdDateTime = new \DateTime();
+        $thresholdDateTime->add(new \DateInterval(sprintf('P%dD', $threshold)));
+
+        $queryBuilder = $this->createQueryBuilder('ref');
+        $queryBuilder->where('ref.appointedDate IS NULL')
+            ->andWhere('ref.targetDate < :targetThreshold')
+           ->setParameter('targetThreshold', $thresholdDateTime);
+
+        return $queryBuilder->getQuery()
+                  ->getResult();
+    }
 }
