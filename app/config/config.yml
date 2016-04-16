@@ -81,3 +81,31 @@ knp_menu:
     templating: false
     # the renderer to use, list is also available by default
     default_renderer: twig
+
+old_sound_rabbit_mq:
+    connections:
+        default:
+            host:     'localhost'
+            port:     5672
+            user:     'guest'
+            password: 'guest'
+            vhost:    '/'
+            lazy:     true
+            connection_timeout: 3
+            read_write_timeout: 3
+
+            # requires php-amqplib v2.4.1+ and PHP5.4+
+            keepalive: false
+
+            # requires php-amqplib v2.4.1+
+            heartbeat: 0
+    producers:
+        unappointed_feedback:
+            connection:       default
+            exchange_options: {name: 'unappointed_feedback', type: direct}
+    consumers:
+        unappointed_feedback:
+            connection:       default
+            exchange_options: {name: 'unappointed_feedback', type: direct}
+            queue_options:    {name: 'unappointed_feedback'}
+            callback:         unappointed_feedback_consumer

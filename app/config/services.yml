@@ -6,3 +6,6 @@ services:
     app.menu_builder:
         class: AppBundle\Menu\MenuBuilder
         arguments: ["@knp_menu.factory"]
+
+    unappointed_feedback_consumer:
+        class: AppBundle\Consumer\UnappointedFeedbackConsumer
