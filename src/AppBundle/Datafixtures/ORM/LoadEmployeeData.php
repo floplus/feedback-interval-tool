@@ -3,6 +3,7 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Employee;
+use AppBundle\Entity\RecurringEmployeeFeedback;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -43,7 +44,32 @@ class LoadEmployeeData implements FixtureInterface
             }
 
             $previousEmployee = $employee;
-        }
 
+            $this->createRef($manager, $employee);
+        }
+    }
+
+    protected function createRef(ObjectManager $manager, Employee $employee)
+    {
+        // first feedback in the next month or so
+        $ref = new RecurringEmployeeFeedback();
+        $ref->setEmployee($employee);
+
+        $targetDate = new \DateTime();
+        $targetDate->add(new \DateInterval(sprintf('P%dD', rand(25, 90))));
+        $ref->setTargetDate($targetDate);
+        $manager->persist($ref);
+
+        //older feedback with all data set
+        $ref = new RecurringEmployeeFeedback();
+        $ref->setEmployee($employee);
+
+        $targetDate = new \DateTime();
+        $targetDate->sub(new \DateInterval(sprintf('P%dD', rand(300, 600))));
+        $ref->setTargetDate($targetDate);
+        $ref->setAppointedDate($targetDate);
+        $manager->persist($ref);
+
+        $manager->flush();
     }
 }
