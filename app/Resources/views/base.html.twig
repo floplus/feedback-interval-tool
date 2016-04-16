@@ -1,15 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
     <head>
-        <meta charset="UTF-8" />
+        <meta charset="utf-8">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
         <title>{% block title %}Welcome!{% endblock %}</title>
+
         {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     </head>
-    <body>
-        {{ knp_menu_render('AppBundle:MenuBuilder:mainMenu') }}
-        {{ knp_menu_render('AppBundle:MenuBuilder:userMenu') }}
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9" role="main">
+            {% block body %}{% endblock %}
+        </div>
+        <div class="col-md-3" role="complementary">
+            <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
+                {{ knp_menu_render('AppBundle:MenuBuilder:mainMenu') }}
+                {{ knp_menu_render('AppBundle:MenuBuilder:userMenu') }}
+            </nav>
+        </div>
+    </div>
+    {% block javascripts %}{% endblock %}
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</div>
+</body>
 </html>
