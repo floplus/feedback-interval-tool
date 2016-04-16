@@ -1,0 +1,13 @@
+database:
+    image: mysql:5.7
+    container_name: db.fit.app
+    net: host
+    environment: 
+    - MYSQL_ROOT_PASSWORD=geheim1234
+    volumes: 
+    - ./docker/database:/docker-entrypoint-initdb.d
+
+mail:
+    image: mailhog/mailhog:latest
+    container_name: mail.fit.app
+    net: host
