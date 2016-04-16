@@ -56,7 +56,7 @@ class LoadEmployeeData implements FixtureInterface
         $ref->setEmployee($employee);
 
         $targetDate = new \DateTime();
-        $targetDate->add(new \DateInterval(sprintf('P%dD', rand(25, 90))));
+        $targetDate->add(new \DateInterval(sprintf('P%dD', rand(1, 60))));
         $ref->setTargetDate($targetDate);
         $manager->persist($ref);
 
