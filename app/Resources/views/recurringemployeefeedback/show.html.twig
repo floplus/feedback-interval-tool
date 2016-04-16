@@ -3,54 +3,52 @@
 {% block body %}
     <h1>RecurringEmployeeFeedback</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ recurringEmployeeFeedback.id }}</td>
-            </tr>
-            <tr>
-                <th>Targetdate</th>
-                <td>{% if recurringEmployeeFeedback.targetDate %}{{ recurringEmployeeFeedback.targetDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Appointeddate</th>
-                <td>{% if recurringEmployeeFeedback.appointedDate %}{{ recurringEmployeeFeedback.appointedDate|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Protocolfile</th>
-                <td>{{ recurringEmployeeFeedback.protocol }}</td>
-            </tr>
-            <tr>
-                <th>Notehr</th>
-                <td>{{ recurringEmployeeFeedback.noteHr }}</td>
-            </tr>
-            <tr>
-                <th>Notesuperior</th>
-                <td>{{ recurringEmployeeFeedback.noteSuperior }}</td>
-            </tr>
-            <tr>
-                <th>Noteemployee</th>
-                <td>{{ recurringEmployeeFeedback.noteEmployee }}</td>
-            </tr>
-            <tr>
-                <th>Typeofmeeting</th>
-                <td>{{ recurringEmployeeFeedback.typeOfMeeting }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-md-1"><span class="pull-right field-identifier">Id</span></div>
+        <div class="col-md-9">{{ recurringEmployeeFeedback.id }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"><span class="pull-right field-identifier">Targetdate</span></div>
+        <div class="col-md-9">{% if recurringEmployeeFeedback.targetDate %}{{ recurringEmployeeFeedback.targetDate|date('Y-m-d H:i:s') }}{% endif %}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"><span class="pull-right field-identifier">Appointeddate</span></div>
+        <div class="col-md-9">{% if recurringEmployeeFeedback.appointedDate %}{{ recurringEmployeeFeedback.appointedDate|date('Y-m-d') }}{% endif %}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"><span class="pull-right field-identifier">Protocolfile</span></div>
+        <div class="col-md-9">{{ recurringEmployeeFeedback.protocol }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"><span class="pull-right field-identifier">Notehr</span></div>
+        <div class="col-md-9">{{ recurringEmployeeFeedback.noteHr }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"><span class="pull-right field-identifier">Notesuperior</span></div>
+        <div class="col-md-9">{{ recurringEmployeeFeedback.noteSuperior }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"><span class="pull-right field-identifier">Noteemployee</span></div>
+        <div class="col-md-9">{{ recurringEmployeeFeedback.noteEmployee }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"><span class="pull-right field-identifier">Typeofmeeting</span></div>
+        <div class="col-md-9">{{ recurringEmployeeFeedback.typeOfMeeting }}</div>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('recurringemployeefeedback_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('recurringemployeefeedback_edit', { 'id': recurringEmployeeFeedback.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <br>
+
+    <div class="row">
+        <a href="{{ path('recurringemployeefeedback_index') }}">
+            <button type="button" class="btn btn-default">Back to list</button>
+        </a>
+        <a href="{{ path('recurringemployeefeedback_edit', { 'id': recurringEmployeeFeedback.id }) }}">
+            <button type="button" class="btn btn-primary">Edit</button>
+        </a>
+
+        <br>
+        {{ form_start(delete_form) }}
+        <input type="submit" class="btn btn-danger" value="Delete">
+        {{ form_end(delete_form) }}
+    </div>
 {% endblock %}
