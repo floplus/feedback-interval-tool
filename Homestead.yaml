@@ -14,8 +14,7 @@ keys:
 folders:
     - map: "/Users/florian.beyerlein/Documents/Projekte/hr_hackaton_2016/fit"
       # added for bindfs see Vagrantfile
-      to: "/var/nfs"
-      #to: "/home/vagrant/fit"
+      to: "/home/vagrant/fit"
       type: "nfs"
 
 sites:
