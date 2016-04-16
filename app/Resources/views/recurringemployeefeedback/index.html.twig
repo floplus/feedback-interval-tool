@@ -43,14 +43,12 @@
                         <span class="glyphicon {% if recurringEmployeeFeedback.noteEmployee %}glyphicon-ok{% else %}glyphicon-remove{% endif %}"></span>
                     </td>
                     <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('recurringemployeefeedback_show', { 'id': recurringEmployeeFeedback.id }) }}">show</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('recurringemployeefeedback_edit', { 'id': recurringEmployeeFeedback.id }) }}">edit</a>
-                            </li>
-                        </ul>
+                        <a href="{{ path('recurringemployeefeedback_show', { 'id': recurringEmployeeFeedback.id }) }}">
+                            <button type="button" class="btn btn-default">Show</button>
+                        </a>
+                        <a href="{{ path('recurringemployeefeedback_edit', { 'id': recurringEmployeeFeedback.id }) }}">
+                            <button type="button" class="btn btn-primary">Edit</button>
+                        </a>
                     </td>
                 </tr>
             {% endfor %}
