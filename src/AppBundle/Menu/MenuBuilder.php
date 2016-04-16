@@ -31,19 +31,13 @@ class MenuBuilder implements ContainerAwareInterface
      */
     public function mainMenu(FactoryInterface $factory, array $options)
     {
-        $menu = $factory->createItem('main.root');
+        $menu = $factory->createItem(
+            'main.root',
+            ['childrenAttributes' => ['class' => 'nav bs-docs-sidenav']]
+        );
 
         $menu->addChild('Home', array('route' => 'homepage'));
         $menu->addChild('Employees', array('route' => 'employee_index'));
-
-
-//        $menu->addChild('Latest Blog Post', array(
-//            'route' => 'blog_show',
-//            'routeParameters' => array('id' => $blog->getId())
-//        ));
-
-        // you can also add sub level's to your menu's as follows
-//        $menu['About Me']->addChild('Edit profile', array('route' => 'edit_profile'));
 
         return $menu;
     }
@@ -58,7 +52,11 @@ class MenuBuilder implements ContainerAwareInterface
      */
     public function userMenu(FactoryInterface $factory, array $options)
     {
-        $menu = $factory->createItem('user.root');
+        $menu = $factory->createItem(
+            'user.root',
+
+            ['childrenAttributes' => ['class' => 'nav bs-docs-sidenav']]
+        );
 
         if ($this->container->get('security.token_storage')->getToken() instanceof AnonymousToken) {
             $menu->addChild('Login', ['route' => 'fos_user_security_login']);
