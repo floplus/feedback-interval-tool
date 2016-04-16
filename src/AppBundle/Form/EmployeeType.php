@@ -19,10 +19,9 @@ class EmployeeType extends AbstractType
             ->add('lastName')
             ->add('email')
             ->add('superiors')
-            ->add('subordinates')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
