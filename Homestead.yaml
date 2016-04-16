@@ -12,13 +12,13 @@ keys:
     - ~/.ssh/id_rsa
 
 folders:
-    - map: "/Users/florian.beyerlein/Documents/Projekte/hr_hackaton_2016/personell_reminder"
-      to: "/home/vagrant/personell-reminder"
+    - map: "/Users/florian.beyerlein/Documents/Projekte/hr_hackaton_2016/fit"
+      to: "/home/vagrant/fit"
       type: "nfs"
 
 sites:
-    - map: homestead.app
-      to: "/home/vagrant/personell-reminder/web"
+    - map: fit.app
+      to: "/home/vagrant/fit/web"
       type: symfony
 
 databases:

@@ -1,4 +1,4 @@
-personell_reminder
+Fit - feedback interval tool
 ==================
 
-A Symfony project created on April 11, 2016, 4:21 pm.
+Keep track of recurring employee feedback.

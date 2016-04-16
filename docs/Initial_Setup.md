@@ -12,7 +12,7 @@ See following URLs for further explanation on the setup steps:
 Setup Symfony3 project:
 
 ```
-symfony new personell_reminder
+symfony new fit
 ```
 
 Add Homestead to laravel:
