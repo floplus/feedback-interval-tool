@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>RecurringEmployeeFeedback list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Targetdate</th>
+                <th>Appointeddate</th>
+                <th>Protocolfile</th>
+                <th>Protocolmimetype</th>
+                <th>Notehr</th>
+                <th>Notesuperior</th>
+                <th>Noteemployee</th>
+                <th>Typeofmeeting</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for recurringEmployeeFeedback in recurringEmployeeFeedbacks %}
+            <tr>
+                <td><a href="{{ path('recurringemployeefeedback_show', { 'id': recurringEmployeeFeedback.id }) }}">{{ recurringEmployeeFeedback.id }}</a></td>
+                <td>{% if recurringEmployeeFeedback.targetDate %}{{ recurringEmployeeFeedback.targetDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if recurringEmployeeFeedback.appointedDate %}{{ recurringEmployeeFeedback.appointedDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ recurringEmployeeFeedback.protocolFile }}</td>
+                <td>{{ recurringEmployeeFeedback.protocolMimetype }}</td>
+                <td>{{ recurringEmployeeFeedback.noteHr }}</td>
+                <td>{{ recurringEmployeeFeedback.noteSuperior }}</td>
+                <td>{{ recurringEmployeeFeedback.noteEmployee }}</td>
+                <td>{{ recurringEmployeeFeedback.typeOfMeeting }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('recurringemployeefeedback_show', { 'id': recurringEmployeeFeedback.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('recurringemployeefeedback_edit', { 'id': recurringEmployeeFeedback.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('recurringemployeefeedback_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
