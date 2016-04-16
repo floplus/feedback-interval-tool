@@ -29,13 +29,13 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-3" role="complementary">
+        <div class="col-md-2" role="complementary">
             <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
                 {{ knp_menu_render('AppBundle:MenuBuilder:mainMenu') }}
                 {{ knp_menu_render('AppBundle:MenuBuilder:userMenu') }}
             </nav>
         </div>
-        <div class="col-md-9" role="main">
+        <div class="col-md-10" role="main">
             {% block body %}{% endblock %}
         </div>
     </div>
