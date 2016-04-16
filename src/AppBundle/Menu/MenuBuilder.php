@@ -33,11 +33,11 @@ class MenuBuilder implements ContainerAwareInterface
     {
         $menu = $factory->createItem(
             'main.root',
-            ['childrenAttributes' => ['class' => 'nav bs-docs-sidenav']]
+            $this->getDefaultMenuOptions()
         );
 
-        $menu->addChild('Home', array('route' => 'homepage'));
-        $menu->addChild('Employees', array('route' => 'employee_index'));
+        $menu->addChild('Home', ['route' => 'homepage']);
+        $menu->addChild('Employees', ['route' => 'employee_index']);
 
         return $menu;
     }
@@ -54,8 +54,7 @@ class MenuBuilder implements ContainerAwareInterface
     {
         $menu = $factory->createItem(
             'user.root',
-
-            ['childrenAttributes' => ['class' => 'nav bs-docs-sidenav']]
+            $this->getDefaultMenuOptions()
         );
 
         if ($this->container->get('security.token_storage')->getToken() instanceof AnonymousToken) {
@@ -65,5 +64,14 @@ class MenuBuilder implements ContainerAwareInterface
         }
 
         return $menu;
+    }
+
+    public function getDefaultMenuOptions()
+    {
+        return [
+            'childrenAttributes' => [
+                'class' => 'nav bs-docs-sidenav',
+            ]
+        ];
     }
 }
