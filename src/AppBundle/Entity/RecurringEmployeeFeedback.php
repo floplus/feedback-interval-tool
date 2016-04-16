@@ -285,10 +285,9 @@ class RecurringEmployeeFeedback
     public function __toString()
     {
         return (string) sprintf(
-            '%s for %s targeted in month %s',
-            $this->getTypeOfMeeting(),
+            'REF for %s targeted in month %s',
             $this->getEmployee(),
-            $this->targetDate->format('MM-YYYY')
+            $this->targetDate->format('M-Y')
         );
     }
 }
