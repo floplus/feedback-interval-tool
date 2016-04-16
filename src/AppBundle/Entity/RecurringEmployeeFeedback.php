@@ -38,16 +38,9 @@ class RecurringEmployeeFeedback
     /**
      * @var string
      *
-     * @ORM\Column(name="protocol_file", type="blob", nullable=true)
+     * @ORM\Column(name="protocol", type="text", nullable=true)
      */
-    private $protocolFile;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="protocol_mimetype", type="string", length=255, nullable=true)
-     */
-    private $protocolMimetype;
+    private $protocol;
 
     /**
      * @var string
@@ -146,51 +139,26 @@ class RecurringEmployeeFeedback
     /**
      * Set protocolFile
      *
-     * @param string $protocolFile
+     * @param string $protocol
      *
      * @return RecurringEmployeeFeedback
      */
-    public function setProtocolFile($protocolFile)
+    public function setProtocol($protocol)
     {
-        $this->protocolFile = $protocolFile;
+        $this->protocol = $protocol;
 
         return $this;
     }
 
     /**
-     * Get protocolFile
+     * Get protocol text.
      *
      * @return string
      */
-    public function getProtocolFile()
+    public function getProtocol()
     {
-        return $this->protocolFile;
+        return $this->protocol;
     }
-
-    /**
-     * Set protocolMimetype
-     *
-     * @param string $protocolMimetype
-     *
-     * @return RecurringEmployeeFeedback
-     */
-    public function setProtocolMimetype($protocolMimetype)
-    {
-        $this->protocolMimetype = $protocolMimetype;
-
-        return $this;
-    }
-
-    /**
-     * Get protocolMimetype
-     *
-     * @return string
-     */
-    public function getProtocolMimetype()
-    {
-        return $this->protocolMimetype;
-    }
-
     /**
      * Set noteHr
      *

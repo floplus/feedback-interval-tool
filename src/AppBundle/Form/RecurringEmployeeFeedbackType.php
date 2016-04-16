@@ -21,7 +21,7 @@ class RecurringEmployeeFeedbackType extends AbstractType
             ->add('typeOfMeeting')
             ->add('targetDate', DateType::class)
             ->add('appointedDate', DateTimeType::class)
-            ->add('protocolFile')
+            ->add('protocol')
             ->add('noteHr')
             ->add('noteSuperior')
             ->add('noteEmployee')
