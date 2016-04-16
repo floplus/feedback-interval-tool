@@ -77,7 +77,6 @@ class RecurringEmployeeFeedback
      */
     private $employee;
 
-
     /**
      * Get id
      *
@@ -159,6 +158,7 @@ class RecurringEmployeeFeedback
     {
         return $this->protocol;
     }
+
     /**
      * Set noteHr
      *
@@ -277,6 +277,18 @@ class RecurringEmployeeFeedback
     public function getEmployee()
     {
         return $this->employee;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) sprintf(
+            'REF for %s targeted in month %s',
+            $this->getEmployee(),
+            $this->targetDate->format('M-Y')
+        );
     }
 }
 

@@ -24,8 +24,8 @@
                 <td><a href="{{ path('recurringemployeefeedback_show', { 'id': recurringEmployeeFeedback.id }) }}">{{ recurringEmployeeFeedback.id }}</a></td>
                 <td>{{ recurringEmployeeFeedback.employee }}</td>
                 <td>{{ recurringEmployeeFeedback.typeOfMeeting }}</td>
-                <td>{% if recurringEmployeeFeedback.targetDate %}{{ recurringEmployeeFeedback.targetDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if recurringEmployeeFeedback.appointedDate %}{{ recurringEmployeeFeedback.appointedDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if recurringEmployeeFeedback.targetDate %}{{ recurringEmployeeFeedback.targetDate|date('Y-m') }}{% endif %}</td>
+                <td>{% if recurringEmployeeFeedback.appointedDate %}{{ recurringEmployeeFeedback.appointedDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td><span class="glyphicon {% if recurringEmployeeFeedback.protocol %}glyphicon-ok{% else %}glyphicon-remove{% endif %}"></span></td>
                 <td><span class="glyphicon {% if recurringEmployeeFeedback.noteHr %}glyphicon-ok{% else %}glyphicon-remove{% endif %}"></span></td>
                 <td><span class="glyphicon {% if recurringEmployeeFeedback.noteSuperior %}glyphicon-ok{% else %}glyphicon-remove{% endif %}"></span></td>
