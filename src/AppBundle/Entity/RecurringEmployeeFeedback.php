@@ -31,7 +31,7 @@ class RecurringEmployeeFeedback
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="appointed_date", type="date", nullable=true)
+     * @ORM\Column(name="appointed_date", type="datetime", nullable=true)
      */
     private $appointedDate;
 

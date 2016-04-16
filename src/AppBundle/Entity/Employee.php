@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -138,7 +139,7 @@ class Employee
     /**
      * Getter for Superiors.
      *
-     * @return mixed
+     * @return Employee[]
      */
     public function getSuperiors()
     {
@@ -148,11 +149,11 @@ class Employee
     /**
      * Setter for Superiors.
      *
-     * @param mixed $superiors
+     * @param ArrayCollection[Employee] $superiors
      *
      * @return $this
      */
-    public function setSuperiors(mixed $superiors)
+    public function setSuperiors(ArrayCollection $superiors)
     {
         $this->superiors = $superiors;
 
@@ -162,7 +163,7 @@ class Employee
     /**
      * Getter for Subordinates.
      *
-     * @return mixed
+     * @return ArrayCollection[Employee]
      */
     public function getSubordinates()
     {
@@ -172,15 +173,26 @@ class Employee
     /**
      * Setter for Subordinates.
      *
-     * @param mixed $subordinates
+     * @param ArrayCollection[Employee] $subordinates
      *
      * @return $this
      */
-    public function setSubordinates(mixed $subordinates)
+    public function setSubordinates(ArrayCollection $subordinates)
     {
         $this->subordinates = $subordinates;
 
         return $this;
+    }
+
+    /**
+     * Return a simple String representation of an employee.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return sprintf("%s %s (%s)", $this->getFirstName(), $this->getLastName(), $this->getEmail());
+
     }
 }
 

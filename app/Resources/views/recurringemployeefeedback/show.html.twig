@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>RecurringEmployeeFeedback</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ recurringEmployeeFeedback.id }}</td>
+            </tr>
+            <tr>
+                <th>Targetdate</th>
+                <td>{% if recurringEmployeeFeedback.targetDate %}{{ recurringEmployeeFeedback.targetDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Appointeddate</th>
+                <td>{% if recurringEmployeeFeedback.appointedDate %}{{ recurringEmployeeFeedback.appointedDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Protocolfile</th>
+                <td>{{ recurringEmployeeFeedback.protocolFile }}</td>
+            </tr>
+            <tr>
+                <th>Protocolmimetype</th>
+                <td>{{ recurringEmployeeFeedback.protocolMimetype }}</td>
+            </tr>
+            <tr>
+                <th>Notehr</th>
+                <td>{{ recurringEmployeeFeedback.noteHr }}</td>
+            </tr>
+            <tr>
+                <th>Notesuperior</th>
+                <td>{{ recurringEmployeeFeedback.noteSuperior }}</td>
+            </tr>
+            <tr>
+                <th>Noteemployee</th>
+                <td>{{ recurringEmployeeFeedback.noteEmployee }}</td>
+            </tr>
+            <tr>
+                <th>Typeofmeeting</th>
+                <td>{{ recurringEmployeeFeedback.typeOfMeeting }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('recurringemployeefeedback_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('recurringemployeefeedback_edit', { 'id': recurringEmployeeFeedback.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
