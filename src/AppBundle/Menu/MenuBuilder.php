@@ -38,6 +38,7 @@ class MenuBuilder implements ContainerAwareInterface
 
         $menu->addChild('Home', array('route' => 'homepage'));
         $menu->addChild('Employees', array('route' => 'employee_index'));
+        $menu->addChild('Feedback', array('route' => 'recurringemployeefeedback_index'));
 
         return $menu;
     }
