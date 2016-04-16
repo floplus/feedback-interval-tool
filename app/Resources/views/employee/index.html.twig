@@ -3,8 +3,9 @@
 {% block body %}
     <h1>Employee list</h1>
 
-    <table class="table table-striped">
-        <thead>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Firstname</th>
@@ -12,32 +13,30 @@
                 <th>Email</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for employee in employees %}
-            <tr>
-                <td><a href="{{ path('employee_show', { 'id': employee.id }) }}">{{ employee.id }}</a></td>
-                <td>{{ employee.firstName }}</td>
-                <td>{{ employee.lastName }}</td>
-                <td>{{ employee.email }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('employee_show', { 'id': employee.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('employee_edit', { 'id': employee.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('employee_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+            </thead>
+            <tbody>
+            {% for employee in employees %}
+                <tr>
+                    <td><a href="{{ path('employee_show', { 'id': employee.id }) }}">{{ employee.id }}</a></td>
+                    <td>{{ employee.firstName }}</td>
+                    <td>{{ employee.lastName }}</td>
+                    <td>{{ employee.email }}</td>
+                    <td>
+                        <a href="{{ path('employee_show', { 'id': employee.id }) }}">
+                            <button type="button" class="btn btn-default">Show</button>
+                        </a>
+                        <a href="{{ path('employee_edit', { 'id': employee.id }) }}">
+                            <button type="button" class="btn btn-primary">Edit</button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <a href="{{ path('employee_new') }}">
+            <button type="button" class="btn btn-success">Create a new entry</button>
+        </a>
+    </div>
 {% endblock %}
