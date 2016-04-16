@@ -3,8 +3,10 @@
 {% block body %}
     <h1>RecurringEmployeeFeedback list</h1>
 
-    <table class="table table-striped">
-        <thead>
+    <div class="row">
+
+        <table class="table table-striped">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Employee</th>
@@ -17,37 +19,48 @@
                 <th>Note employee</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for recurringEmployeeFeedback in recurringEmployeeFeedbacks %}
-            <tr>
-                <td><a href="{{ path('recurringemployeefeedback_show', { 'id': recurringEmployeeFeedback.id }) }}">{{ recurringEmployeeFeedback.id }}</a></td>
-                <td>{{ recurringEmployeeFeedback.employee }}</td>
-                <td>{{ recurringEmployeeFeedback.typeOfMeeting }}</td>
-                <td>{% if recurringEmployeeFeedback.targetDate %}{{ recurringEmployeeFeedback.targetDate|date('Y-m') }}{% endif %}</td>
-                <td>{% if recurringEmployeeFeedback.appointedDate %}{{ recurringEmployeeFeedback.appointedDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td><span class="glyphicon {% if recurringEmployeeFeedback.protocol %}glyphicon-ok{% else %}glyphicon-remove{% endif %}"></span></td>
-                <td><span class="glyphicon {% if recurringEmployeeFeedback.noteHr %}glyphicon-ok{% else %}glyphicon-remove{% endif %}"></span></td>
-                <td><span class="glyphicon {% if recurringEmployeeFeedback.noteSuperior %}glyphicon-ok{% else %}glyphicon-remove{% endif %}"></span></td>
-                <td><span class="glyphicon {% if recurringEmployeeFeedback.noteEmployee %}glyphicon-ok{% else %}glyphicon-remove{% endif %}"></span></td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('recurringemployeefeedback_show', { 'id': recurringEmployeeFeedback.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('recurringemployeefeedback_edit', { 'id': recurringEmployeeFeedback.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for recurringEmployeeFeedback in recurringEmployeeFeedbacks %}
+                <tr>
+                    <td>
+                        <a href="{{ path('recurringemployeefeedback_show', { 'id': recurringEmployeeFeedback.id }) }}">{{ recurringEmployeeFeedback.id }}</a>
+                    </td>
+                    <td>{{ recurringEmployeeFeedback.employee }}</td>
+                    <td>{{ recurringEmployeeFeedback.typeOfMeeting }}</td>
+                    <td>{% if recurringEmployeeFeedback.targetDate %}{{ recurringEmployeeFeedback.targetDate|date('Y-m') }}{% endif %}</td>
+                    <td>{% if recurringEmployeeFeedback.appointedDate %}{{ recurringEmployeeFeedback.appointedDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>
+                        <span class="glyphicon {% if recurringEmployeeFeedback.protocol %}glyphicon-ok{% else %}glyphicon-remove{% endif %}"></span>
+                    </td>
+                    <td>
+                        <span class="glyphicon {% if recurringEmployeeFeedback.noteHr %}glyphicon-ok{% else %}glyphicon-remove{% endif %}"></span>
+                    </td>
+                    <td>
+                        <span class="glyphicon {% if recurringEmployeeFeedback.noteSuperior %}glyphicon-ok{% else %}glyphicon-remove{% endif %}"></span>
+                    </td>
+                    <td>
+                        <span class="glyphicon {% if recurringEmployeeFeedback.noteEmployee %}glyphicon-ok{% else %}glyphicon-remove{% endif %}"></span>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('recurringemployeefeedback_show', { 'id': recurringEmployeeFeedback.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('recurringemployeefeedback_edit', { 'id': recurringEmployeeFeedback.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('recurringemployeefeedback_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    <div class="row">
+        <a href="{{ path('recurringemployeefeedback_new') }}">
+            <button type="button" class="btn btn-success">Add</button>
+        </a>
+    </div>
 {% endblock %}

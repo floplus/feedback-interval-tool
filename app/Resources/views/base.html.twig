@@ -20,6 +20,7 @@
             .bs-docs-sidebar .nav > li.active:focus {
                 border-left: 2px solid #337ab7;
             }
+
             .field-identifier {
                 font-weight: bold;
             }
@@ -36,7 +37,10 @@
             </nav>
         </div>
         <div class="col-md-10" role="main">
-            {% block body %}{% endblock %}
+
+            <div class="container">
+                {% block body %}{% endblock %}
+            </div>
         </div>
     </div>
     {% block javascripts %}{% endblock %}

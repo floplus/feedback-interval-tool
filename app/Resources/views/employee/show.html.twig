@@ -1,44 +1,42 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <h1>Employee</h1>
+    <h1>Employee</h1>
 
-        <div class="row">
-            <div class="col-md-1"><span class="pull-right field-identifier">ID</span></div>
-            <div class="col-md-9">{{ employee.id }}</div>
-        </div>
+    <div class="row">
+        <div class="col-md-1"><span class="pull-right field-identifier">ID</span></div>
+        <div class="col-md-9">{{ employee.id }}</div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-1"><span class="pull-right field-identifier">Firstname</span></div>
-            <div class="col-md-9">{{ employee.firstName }}</div>
-        </div>
+    <div class="row">
+        <div class="col-md-1"><span class="pull-right field-identifier">Firstname</span></div>
+        <div class="col-md-9">{{ employee.firstName }}</div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-1"><span class="pull-right field-identifier">Lastname</span></div>
-            <div class="col-md-9">{{ employee.lastName }}</div>
-        </div>
+    <div class="row">
+        <div class="col-md-1"><span class="pull-right field-identifier">Lastname</span></div>
+        <div class="col-md-9">{{ employee.lastName }}</div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-1"><span class="pull-right field-identifier">Email</span></div>
-            <div class="col-md-9">{{ employee.email }}</div>
-        </div>
+    <div class="row">
+        <div class="col-md-1"><span class="pull-right field-identifier">Email</span></div>
+        <div class="col-md-9">{{ employee.email }}</div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <a href="{{ path('employee_index') }}">
+            <button type="button" class="btn btn-default">Back to list</button>
+        </a>
+        <a href="{{ path('employee_edit', { 'id': employee.id }) }}">
+            <button type="button" class="btn btn-primary">Edit</button>
+        </a>
 
         <br>
-
-        <div class="row">
-            <a href="{{ path('employee_index') }}">
-                <button type="button" class="btn btn-default">Back to list</button>
-            </a>
-            <a href="{{ path('employee_edit', { 'id': employee.id }) }}">
-                <button type="button" class="btn btn-primary">Edit</button>
-            </a>
-
-            <br>
-            {{ form_start(delete_form) }}
-            <input type="submit" class="btn btn-danger" value="Delete">
-            {{ form_end(delete_form) }}
-        </div>
+        {{ form_start(delete_form) }}
+        <input type="submit" class="btn btn-danger" value="Delete">
+        {{ form_end(delete_form) }}
     </div>
 
 {% endblock %}
