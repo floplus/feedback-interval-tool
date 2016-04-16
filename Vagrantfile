@@ -17,7 +17,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     if File.exists? homesteadYamlPath then
-        Homestead.configure(config, YAML::load(File.read(homesteadYamlPath)))
+        hsconf = YAML::load(File.read(homesteadYamlPath))
+        # add bindfs config
+        #puts "bindfs target folder: #{hsconf["folders"][0]["to"]}"
+        config.nfs.map_uid = Process.uid
+        config.nfs.map_gid = Process.gid
+        config.bindfs.bind_folder "/var/nfs", hsconf["folders"][0]["to"]
+
+        Homestead.configure(config, hsconf)
     elsif File.exists? homesteadJsonPath then
         Homestead.configure(config, JSON.parse(File.read(homesteadJsonPath)))
     end

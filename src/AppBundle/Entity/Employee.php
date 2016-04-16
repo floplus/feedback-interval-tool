@@ -44,13 +44,17 @@ class Employee
     private $email;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Employee", mappedBy="subordinates")
+     * @ORM\ManyToMany(targetEntity="Employee", inversedBy="subordinates")
+     * @ORM\JoinTable(
+     *     name="superior_subordinates",
+     *     joinColumns={@ORM\JoinColumn(name="employee_source", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="employee_target", referencedColumnName="id")}
+     * )
      */
     private $superiors;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Employee", inversedBy="superiors")
-     * @ORM\JoinTable(name="superior_subordinates")
+     * @ORM\ManyToMany(targetEntity="Employee", mappedBy="superiors")
      */
     private $subordinates;
 

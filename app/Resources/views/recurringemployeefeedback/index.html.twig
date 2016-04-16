@@ -7,14 +7,14 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Employee</th>
+                <th>Typeofmeeting</th>
                 <th>Targetdate</th>
                 <th>Appointeddate</th>
-                <th>Protocolfile</th>
-                <th>Protocolmimetype</th>
-                <th>Notehr</th>
-                <th>Notesuperior</th>
-                <th>Noteemployee</th>
-                <th>Typeofmeeting</th>
+                <th>Protocol</th>
+                <th>Note HR</th>
+                <th>Note superior</th>
+                <th>Note employee</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -22,14 +22,14 @@
         {% for recurringEmployeeFeedback in recurringEmployeeFeedbacks %}
             <tr>
                 <td><a href="{{ path('recurringemployeefeedback_show', { 'id': recurringEmployeeFeedback.id }) }}">{{ recurringEmployeeFeedback.id }}</a></td>
+                <td>{{ recurringEmployeeFeedback.employee }}</td>
+                <td>{{ recurringEmployeeFeedback.typeOfMeeting }}</td>
                 <td>{% if recurringEmployeeFeedback.targetDate %}{{ recurringEmployeeFeedback.targetDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if recurringEmployeeFeedback.appointedDate %}{{ recurringEmployeeFeedback.appointedDate|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ recurringEmployeeFeedback.protocolFile }}</td>
-                <td>{{ recurringEmployeeFeedback.protocolMimetype }}</td>
-                <td>{{ recurringEmployeeFeedback.noteHr }}</td>
-                <td>{{ recurringEmployeeFeedback.noteSuperior }}</td>
-                <td>{{ recurringEmployeeFeedback.noteEmployee }}</td>
-                <td>{{ recurringEmployeeFeedback.typeOfMeeting }}</td>
+                <td><span class="glyphicon {% if recurringEmployeeFeedback.protocol %}glyphicon-ok{% else %}glyphicon-remove{% endif %}"></span></td>
+                <td><span class="glyphicon {% if recurringEmployeeFeedback.noteHr %}glyphicon-ok{% else %}glyphicon-remove{% endif %}"></span></td>
+                <td><span class="glyphicon {% if recurringEmployeeFeedback.noteSuperior %}glyphicon-ok{% else %}glyphicon-remove{% endif %}"></span></td>
+                <td><span class="glyphicon {% if recurringEmployeeFeedback.noteEmployee %}glyphicon-ok{% else %}glyphicon-remove{% endif %}"></span></td>
                 <td>
                     <ul>
                         <li>

@@ -18,14 +18,13 @@ class RecurringEmployeeFeedbackType extends AbstractType
     {
         $builder
             ->add('employee')
+            ->add('typeOfMeeting')
             ->add('targetDate', DateType::class)
             ->add('appointedDate', DateTimeType::class)
-            ->add('protocolFile')
-            ->add('protocolMimetype')
+            ->add('protocol')
             ->add('noteHr')
             ->add('noteSuperior')
             ->add('noteEmployee')
-            ->add('typeOfMeeting')
         ;
     }
 
