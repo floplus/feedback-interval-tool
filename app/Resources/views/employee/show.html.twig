@@ -3,38 +3,40 @@
 {% block body %}
     <h1>Employee</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ employee.id }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ employee.firstName }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ employee.lastName }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ employee.email }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-md-1"><span class="pull-right field-identifier">ID</span></div>
+        <div class="col-md-8">{{ employee.id }}</div>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('employee_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('employee_edit', { 'id': employee.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-md-1"><span class="pull-right field-identifier">Firstname</span></div>
+        <div class="col-md-8">{{ employee.firstName }}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"><span class="pull-right field-identifier">Lastname</span></div>
+        <div class="col-md-8">{{ employee.lastName }}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"><span class="pull-right field-identifier">Email</span></div>
+        <div class="col-md-8">{{ employee.email }}</div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <a href="{{ path('employee_index') }}">
+            <button type="button" class="btn btn-default">Back to list</button>
+        </a>
+        <a href="{{ path('employee_edit', { 'id': employee.id }) }}">
+            <button type="button" class="btn btn-primary">Edit</button>
+        </a>
+
+        <br>
+        {{ form_start(delete_form) }}
+        <input type="submit" class="btn btn-danger" value="Delete">
+        {{ form_end(delete_form) }}
+    </div>
+
 {% endblock %}
