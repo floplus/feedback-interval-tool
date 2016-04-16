@@ -15,6 +15,12 @@
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <style>
+            .bs-docs-sidebar .nav > li.active,
+            .bs-docs-sidebar .nav > li.active:focus {
+                border-left: 2px solid #337ab7;
+            }
+        </style>
     </head>
 </head>
 <body>
