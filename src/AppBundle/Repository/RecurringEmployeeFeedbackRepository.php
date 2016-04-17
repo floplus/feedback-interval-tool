@@ -30,4 +30,25 @@ class RecurringEmployeeFeedbackRepository extends \Doctrine\ORM\EntityRepository
         return $queryBuilder->getQuery()
                   ->getResult();
     }
+
+    /**
+     * Find feedbacks with appointments in the next threshold days.
+     * 
+     * @param int $threshold
+     *
+     * @return array
+     */
+    public function findAppointed(int $threshold)
+    {
+        $thresholdDateTime = new \DateTime();
+        $thresholdDateTime->add(new \DateInterval(sprintf('P%dD', $threshold)));
+
+        $queryBuilder = $this->createQueryBuilder('ref');
+        $queryBuilder->where('ref.appointedDate IS NOT NULL')
+            ->andWhere('ref.targetDate < :targetThreshold')
+           ->setParameter('targetThreshold', $thresholdDateTime);
+
+        return $queryBuilder->getQuery()
+                  ->getResult();
+    }
 }
