@@ -11,3 +11,8 @@ mail:
     image: mailhog/mailhog:latest
     container_name: mail.fit.app
     net: host
+
+rabbitmq:
+  image: rabbitmq:3-management
+  container_name: amqp.fit.app
+  net: host
