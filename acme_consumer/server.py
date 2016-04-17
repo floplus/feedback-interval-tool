@@ -7,6 +7,7 @@ from slackclient import SlackClient
 rabbitmq_host = 'docker_host'
 rabbitmq_port = 5672
 rabbitmq_exchange = 'unappointed_feedback'
+rabbitmq_queue = 'unappointed_feedback'
 rabbitmq_exchange_type = 'direct'
 slack_token = "xoxp-22834931874-34259697140-35318315072-012e27fd15"
 slack_name = 'The-Fit-Reminder-Squirrel'
@@ -21,7 +22,7 @@ connection = pika.BlockingConnection(
 )
 channel = connection.channel()
 channel.exchange_declare(exchange=rabbitmq_exchange, type=rabbitmq_exchange_type)
-result = channel.queue_declare(exclusive=True)
+result = channel.queue_declare(queue=rabbitmq_queue, durable=True, exclusive=True)
 queue_name = result.method.queue
 channel.queue_bind(exchange=rabbitmq_exchange, queue=queue_name)
 
