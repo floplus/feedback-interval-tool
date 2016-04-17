@@ -45,8 +45,13 @@ class CollectUnappointedFeedbackCommand extends ContainerAwareCommand
         foreach ($feedbacks as $feedback) {
             $output->writeln(sprintf('Feedback with missing appointed date: %s', $feedback));
 
-            $msg = array('feedback_id' => $feedback->getId());
-            $producer->publish(serialize($msg));
+
+            $msg = array(
+                'feedback_id' => $feedback->getId(),
+                'slackHandle' => $feedback->getEmployee()->getSlackHandle(),
+                'targetDate'  => $feedback->getTargetDate(),
+            );
+            $producer->publish(json_encode($msg));
         }
 
     }
