@@ -3,6 +3,7 @@
 namespace AppBundle\Command;
 
 use AppBundle\AppBundle;
+use AppBundle\Entity\Employee;
 use AppBundle\Entity\RecurringEmployeeFeedback;
 use AppBundle\Repository\RecurringEmployeeFeedbackRepository;
 use Doctrine\ORM\EntityManager;
@@ -45,10 +46,17 @@ class CollectUnappointedFeedbackCommand extends ContainerAwareCommand
         foreach ($feedbacks as $feedback) {
             $output->writeln(sprintf('Feedback with missing appointed date: %s', $feedback));
 
+            $superiors = $feedback->getEmployee()->getSuperiors();
+            // skip feedbacks for employees without superior.... should be handled an other way
+            /** @var Employee $superior */
+            if (false === $superior = $superiors->first()) {
+                continue;
+            }
 
             $msg = array(
                 'feedback_id' => $feedback->getId(),
-                'slackHandle' => $feedback->getEmployee()->getSlackHandle(),
+                'slackHandle_superior' => $superior->getSlackHandle(),
+                'slackHandle_employee' => $feedback->getEmployee()->getSlackHandle(),
                 'targetDate'  => $feedback->getTargetDate(),
             );
             $producer->publish(json_encode($msg));
