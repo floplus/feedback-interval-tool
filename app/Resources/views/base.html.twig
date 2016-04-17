@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <head>
-        <meta charset="utf-8">
+    <meta charset="utf-8">
 
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}fit - feedback interval tool{% endblock %}</title>
 
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <style>
-            .bs-docs-sidebar .nav > li.active,
-            .bs-docs-sidebar .nav > li.active:focus {
-                border-left: 2px solid #337ab7;
-            }
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        .bs-docs-sidebar .nav > li.active,
+        .bs-docs-sidebar .nav > li.active:focus {
+            border-left: 2px solid #337ab7;
+        }
 
-            .field-identifier {
-                font-weight: bold;
-            }
+        .field-identifier {
+            font-weight: bold;
+        }
 
-            .table .glyphicon.glyphicon-remove {
-                color: #FF0000;
-            }
-            .table .glyphicon.glyphicon-ok {
-                 color: #008000;
-            }
-        </style>
-    </head>
+        .table .glyphicon.glyphicon-remove {
+            color: #FF0000;
+        }
+        .table .glyphicon.glyphicon-ok {
+             color: #008000;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -46,13 +44,24 @@
         <div class="col-md-10" role="main">
 
             <div class="container">
-                {% block body %}{% endblock %}
+                {% if app.request.hasPreviousSession %}
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="flash-{{ type }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+
+                {% block body %}
+                {% endblock %}
             </div>
         </div>
     </div>
-    {% block javascripts %}{% endblock %}
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    {% block javascripts %}{% endblock %}
 </div>
 </body>
 </html>
