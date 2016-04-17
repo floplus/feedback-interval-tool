@@ -4,20 +4,30 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Employee;
 use AppBundle\Entity\RecurringEmployeeFeedback;
+use AppBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Component\Security\Core\Tests\Encoder\PasswordEncoder;
+use Symfony\Component\Serializer\Encoder\EncoderInterface;
 
-class LoadEmployeeData implements FixtureInterface
+class LoadEmployeeData implements FixtureInterface, ContainerAwareInterface
 {
+    use ContainerAwareTrait;
+
     public function load(ObjectManager $manager)
     {
         $employeesData = [
-            ['jane.doe@fit.app', 'Jane', 'Doe'],
-            ['john.doe@fit.app', 'John', 'Doe'],
-            ['hans.wurst@fit.app', 'Hans', 'Wurst'],
-            ['gabi.mustermann@fit.app', 'Gabi', 'Mustermann'],
-            ['max.musterfrau@fit.app', 'Max', 'Musterfrau'],
+            ['jane.doe@fit.app', 'Jane', 'Doe', '@slackbot'],
+            ['john.doe@fit.app', 'John', 'Doe', '@slackbot'],
+            ['hans.wurst@fit.app', 'Hans', 'Wurst', '@slackbot'],
+            ['gabi.mustermann@fit.app', 'Gabi', 'Mustermann', '@slackbot'],
+            ['max.musterfrau@fit.app', 'Max', 'Musterfrau', '@slackbot'],
+            ['florian.beyerlein@hmmh.de', 'Florian', 'Beyerlein', '@floplus'],
+            ['vanessa.wrede@hmmh.de', 'Vanessa', 'Wrede', '@vanessa_wrede'],
+            ['julian.nuss@hmmh.de', 'Julian', 'Nuß', '@julian.nuss'],
         ];
 
         $employees = [];
@@ -27,6 +37,7 @@ class LoadEmployeeData implements FixtureInterface
             $employee->setEmail($employeeData[0]);
             $employee->setFirstName($employeeData[1]);
             $employee->setLastName($employeeData[2]);
+            $employee->setSlackHandle($employeeData[3]);
 
             $manager->persist($employee);
             $manager->flush();
@@ -47,6 +58,22 @@ class LoadEmployeeData implements FixtureInterface
 
             $this->createRef($manager, $employee);
         }
+
+        $user = new User();
+        $user->setUsername('admin');
+        $user->setEmail('admin@fit.app');
+        $user->setEnabled(true);
+        $user->addRole('ADMIN_ROLE');
+        $user->setSuperAdmin(true);
+
+        // the 'security.password_encoder' service requires Symfony 2.6 or higher
+        /** @var PasswordEncoder $encoder */
+        $encoder = $this->container->get('security.password_encoder');
+        $password = $encoder->encodePassword($user, 'secret');
+        $user->setPassword($password);
+
+        $manager->persist($user);
+        $manager->flush();
     }
 
     protected function createRef(ObjectManager $manager, Employee $employee)

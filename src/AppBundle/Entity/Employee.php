@@ -44,6 +44,13 @@ class Employee
     private $email;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="slack_handle", type="string", length=255, nullable=true)
+     */
+    private $slackHandle;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Employee", inversedBy="subordinates")
      * @ORM\JoinTable(
      *     name="superior_subordinates",
@@ -58,6 +65,31 @@ class Employee
      */
     private $subordinates;
 
+    /**
+     * Getter for SlackHandle.
+     *
+     * @return string
+     */
+    public function getSlackHandle()
+    {
+        return $this->slackHandle;
+    }
+
+    /**
+     * Setter for SlackHandle.
+     *
+     * @param string $slackHandle
+     *
+     * @return $this
+     */
+    public function setSlackHandle(string $slackHandle)
+    {
+        $this->slackHandle = $slackHandle;
+
+        return $this;
+    }
+
+    
     /**
      * Get id
      *

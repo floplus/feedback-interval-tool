@@ -18,6 +18,7 @@ class EmployeeType extends AbstractType
             ->add('firstName')
             ->add('lastName')
             ->add('email')
+            ->add('slackHandle')
             ->add('superiors')
         ;
     }
