@@ -10,7 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Employee</th>
-                <th>Typeofmeeting</th>
+                {#<th>Typeofmeeting</th>#}
                 <th>Targetdate</th>
                 <th>Appointeddate</th>
                 <th>Protocol</th>
@@ -27,7 +27,7 @@
                         <a href="{{ path('recurringemployeefeedback_show', { 'id': recurringEmployeeFeedback.id }) }}">{{ recurringEmployeeFeedback.id }}</a>
                     </td>
                     <td>{{ recurringEmployeeFeedback.employee }}</td>
-                    <td>{{ recurringEmployeeFeedback.typeOfMeeting }}</td>
+                    {#<td>{{ recurringEmployeeFeedback.typeOfMeeting }}</td>#}
                     <td>{% if recurringEmployeeFeedback.targetDate %}{{ recurringEmployeeFeedback.targetDate|date('Y-m') }}{% endif %}</td>
                     <td>{% if recurringEmployeeFeedback.appointedDate %}{{ recurringEmployeeFeedback.appointedDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>
