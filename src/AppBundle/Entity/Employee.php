@@ -89,7 +89,7 @@ class Employee
         return $this;
     }
 
-    
+
     /**
      * Get id
      *
@@ -175,7 +175,7 @@ class Employee
     /**
      * Getter for Superiors.
      *
-     * @return Employee[]
+     * @return ArrayCollection[Employee]
      */
     public function getSuperiors()
     {
